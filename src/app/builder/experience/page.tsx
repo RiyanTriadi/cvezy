@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft, Briefcase, Plus, Trash2 } from "lucide-react";
+import { ArrowRight, ArrowLeft, Briefcase, Plus, Trash2, ArrowUp, ArrowDown } from "lucide-react";
 import { BrutalButton } from "@/components/ui/brutal-button";
 import { BrutalInput } from "@/components/ui/brutal-input";
 import { BrutalTextarea } from "@/components/ui/brutal-textarea";
@@ -15,7 +15,7 @@ function generateId() {
 }
 
 export default function ExperiencePage() {
-  const { experiences, addExperience, updateExperience, removeExperience } =
+  const { experiences, addExperience, updateExperience, removeExperience, reorderExperience } =
     useCVStore();
 
   const handleAdd = () => {
@@ -73,12 +73,28 @@ export default function ExperiencePage() {
           <BrutalCard key={exp.id} accentColor="blue" className="pt-8">
             <div className="flex items-center justify-between mb-6">
               <BrutalCardTitle>Pengalaman #{index + 1}</BrutalCardTitle>
-              <button
-                onClick={() => removeExperience(exp.id)}
-                className="w-10 h-10 flex items-center justify-center border-4 border-brutal-black bg-brand-pink shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all duration-150"
-              >
-                <Trash2 size={16} strokeWidth={3} />
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => reorderExperience(index, "up")}
+                  disabled={index === 0}
+                  className="w-10 h-10 flex items-center justify-center border-4 border-brutal-black bg-brand-yellow shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0 disabled:hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"
+                >
+                  <ArrowUp size={16} strokeWidth={3} />
+                </button>
+                <button
+                  onClick={() => reorderExperience(index, "down")}
+                  disabled={index === experiences.length - 1}
+                  className="w-10 h-10 flex items-center justify-center border-4 border-brutal-black bg-brand-yellow shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0 disabled:hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"
+                >
+                  <ArrowDown size={16} strokeWidth={3} />
+                </button>
+                <button
+                  onClick={() => removeExperience(exp.id)}
+                  className="w-10 h-10 flex items-center justify-center border-4 border-brutal-black bg-brand-pink shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 ml-2"
+                >
+                  <Trash2 size={16} strokeWidth={3} />
+                </button>
+              </div>
             </div>
 
             <div className="space-y-4">

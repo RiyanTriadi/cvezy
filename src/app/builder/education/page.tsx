@@ -9,6 +9,8 @@ import {
   Plus,
   Trash2,
   Wrench,
+  ArrowUp,
+  ArrowDown,
 } from "lucide-react";
 import { BrutalButton } from "@/components/ui/brutal-button";
 import { BrutalInput } from "@/components/ui/brutal-input";
@@ -31,9 +33,11 @@ export default function EducationPage() {
     addEducation,
     updateEducation,
     removeEducation,
+    reorderEducation,
     addSkill,
     updateSkill,
     removeSkill,
+    reorderSkill,
   } = useCVStore();
 
   const handleAddEducation = () => {
@@ -108,12 +112,28 @@ export default function EducationPage() {
             <BrutalCard key={edu.id} accentColor="green" className="pt-8">
               <div className="flex items-center justify-between mb-6">
                 <BrutalCardTitle>Pendidikan #{index + 1}</BrutalCardTitle>
-                <button
-                  onClick={() => removeEducation(edu.id)}
-                  className="w-10 h-10 flex items-center justify-center border-4 border-brutal-black bg-brand-pink shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all duration-150"
-                >
-                  <Trash2 size={16} strokeWidth={3} />
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => reorderEducation(index, "up")}
+                    disabled={index === 0}
+                    className="w-10 h-10 flex items-center justify-center border-4 border-brutal-black bg-brand-yellow shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0 disabled:hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"
+                  >
+                    <ArrowUp size={16} strokeWidth={3} />
+                  </button>
+                  <button
+                    onClick={() => reorderEducation(index, "down")}
+                    disabled={index === education.length - 1}
+                    className="w-10 h-10 flex items-center justify-center border-4 border-brutal-black bg-brand-yellow shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0 disabled:hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"
+                  >
+                    <ArrowDown size={16} strokeWidth={3} />
+                  </button>
+                  <button
+                    onClick={() => removeEducation(edu.id)}
+                    className="w-10 h-10 flex items-center justify-center border-4 border-brutal-black bg-brand-pink shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 ml-2"
+                  >
+                    <Trash2 size={16} strokeWidth={3} />
+                  </button>
+                </div>
               </div>
               <div className="space-y-4">
                 <BrutalInput
@@ -226,12 +246,28 @@ export default function EducationPage() {
                     }
                   />
                 </div>
-                <button
-                  onClick={() => removeSkill(skill.id)}
-                  className="w-8 h-8 flex items-center justify-center border-3 border-brutal-black bg-brand-pink hover:translate-x-[1px] hover:translate-y-[1px] transition-all duration-150"
-                >
-                  <Trash2 size={14} strokeWidth={3} />
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => reorderSkill(index, "up")}
+                    disabled={index === 0}
+                    className="w-8 h-8 flex items-center justify-center border-3 border-brutal-black bg-brand-yellow hover:translate-x-[1px] hover:translate-y-[1px] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+                  >
+                    <ArrowUp size={14} strokeWidth={3} />
+                  </button>
+                  <button
+                    onClick={() => reorderSkill(index, "down")}
+                    disabled={index === skills.length - 1}
+                    className="w-8 h-8 flex items-center justify-center border-3 border-brutal-black bg-brand-yellow hover:translate-x-[1px] hover:translate-y-[1px] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+                  >
+                    <ArrowDown size={14} strokeWidth={3} />
+                  </button>
+                  <button
+                    onClick={() => removeSkill(skill.id)}
+                    className="w-8 h-8 flex items-center justify-center border-3 border-brutal-black bg-brand-pink hover:translate-x-[1px] hover:translate-y-[1px] transition-all duration-150 ml-1"
+                  >
+                    <Trash2 size={14} strokeWidth={3} />
+                  </button>
+                </div>
               </div>
             </BrutalCard>
           ))}

@@ -64,21 +64,25 @@ interface CVStore extends CVData {
   addExperience: (exp: Experience) => void;
   updateExperience: (id: string, exp: Partial<Experience>) => void;
   removeExperience: (id: string) => void;
+  reorderExperience: (index: number, direction: "up" | "down") => void;
 
   // Organizations
   addOrganization: (org: Organization) => void;
   updateOrganization: (id: string, org: Partial<Organization>) => void;
   removeOrganization: (id: string) => void;
+  reorderOrganization: (index: number, direction: "up" | "down") => void;
 
   // Education
   addEducation: (edu: Education) => void;
   updateEducation: (id: string, edu: Partial<Education>) => void;
   removeEducation: (id: string) => void;
+  reorderEducation: (index: number, direction: "up" | "down") => void;
 
   // Skills
   addSkill: (skill: Skill) => void;
   updateSkill: (id: string, skill: Partial<Skill>) => void;
   removeSkill: (id: string) => void;
+  reorderSkill: (index: number, direction: "up" | "down") => void;
 
   // Reset
   resetCV: () => void;
@@ -128,6 +132,16 @@ export const useCVStore = create<CVStore>()(
         set((state) => ({
           experiences: state.experiences.filter((e) => e.id !== id),
         })),
+      reorderExperience: (index, direction) =>
+        set((state) => {
+          const arr = [...state.experiences];
+          if (direction === "up" && index > 0) {
+            [arr[index - 1], arr[index]] = [arr[index], arr[index - 1]];
+          } else if (direction === "down" && index < arr.length - 1) {
+            [arr[index], arr[index + 1]] = [arr[index + 1], arr[index]];
+          }
+          return { experiences: arr };
+        }),
 
       // Organizations
       addOrganization: (org) =>
@@ -144,6 +158,16 @@ export const useCVStore = create<CVStore>()(
         set((state) => ({
           organizations: state.organizations.filter((o) => o.id !== id),
         })),
+      reorderOrganization: (index, direction) =>
+        set((state) => {
+          const arr = [...state.organizations];
+          if (direction === "up" && index > 0) {
+            [arr[index - 1], arr[index]] = [arr[index], arr[index - 1]];
+          } else if (direction === "down" && index < arr.length - 1) {
+            [arr[index], arr[index + 1]] = [arr[index + 1], arr[index]];
+          }
+          return { organizations: arr };
+        }),
 
       // Education
       addEducation: (edu) =>
@@ -160,6 +184,16 @@ export const useCVStore = create<CVStore>()(
         set((state) => ({
           education: state.education.filter((e) => e.id !== id),
         })),
+      reorderEducation: (index, direction) =>
+        set((state) => {
+          const arr = [...state.education];
+          if (direction === "up" && index > 0) {
+            [arr[index - 1], arr[index]] = [arr[index], arr[index - 1]];
+          } else if (direction === "down" && index < arr.length - 1) {
+            [arr[index], arr[index + 1]] = [arr[index + 1], arr[index]];
+          }
+          return { education: arr };
+        }),
 
       // Skills
       addSkill: (skill) =>
@@ -176,6 +210,16 @@ export const useCVStore = create<CVStore>()(
         set((state) => ({
           skills: state.skills.filter((s) => s.id !== id),
         })),
+      reorderSkill: (index, direction) =>
+        set((state) => {
+          const arr = [...state.skills];
+          if (direction === "up" && index > 0) {
+            [arr[index - 1], arr[index]] = [arr[index], arr[index - 1]];
+          } else if (direction === "down" && index < arr.length - 1) {
+            [arr[index], arr[index + 1]] = [arr[index + 1], arr[index]];
+          }
+          return { skills: arr };
+        }),
 
       // Reset
       resetCV: () => set(initialState),

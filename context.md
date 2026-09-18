@@ -11,11 +11,11 @@
 ## 🛠️ Rekomendasi Tech Stack
 - **Frontend:** Next.js (App Router) / React.js
 - **Styling UI Aplikasi:** Tailwind CSS + shadcn/ui (Gaya Neo-Brutalism)
-- **Styling Output CV:** Standard HTML/CSS (Clean, Single Column, Black & White)
-- **State Management:** Zustand atau React Context
+- **Styling Output CV:** Standard HTML/CSS (Clean, Single Column, Black & White, Print-Optimized)
+- **State Management:** Zustand (Persist Middleware / LocalStorage)
 - **Form & Validation:** React Hook Form + Zod
-- **PDF Export:** react-to-print / @react-pdf/renderer
-- **Backend/Auth/DB:** Supabase (PostgreSQL, Auth, Storage)
+- **PDF Export:** react-to-print (Memanfaatkan native browser print engine dengan konfigurasi @page)
+- **Backend/Auth/DB:** *Tidak ada (Local-first, tanpa login/database)*
 
 ## 🎨 Design System
 
@@ -48,49 +48,41 @@ Ini adalah aturan untuk hasil cetak/PDF CV pengguna. **Dilarang** menerapkan gay
 6. **Format Tanggal:** Gunakan format standar (MM/YYYY atau Bulan YYYY).
 7. **Konten:** Fokus pada *action verbs* dan *bullet points* yang mudah dibaca mesin.
 
-## 🗺️ Feature Roadmap (Revisi)
+## 🗺️ Feature Roadmap (Revisi Aktual)
 
-### Fase 1: Isi CV Cepat (Data Entry)
-- [ ] Form input Data Diri & Kontak (Nama, Email, Telepon, LinkedIn, Lokasi).
-- [ ] Form input Ringkasan Profil (Summary).
-- [ ] Form input Pengalaman Kerja (Perusahaan, Posisi, Tanggal, Deskripsi Bullet Points).
-- [ ] Form input Pengalaman Organisasi (jika ada).
-- [ ] Form input Pendidikan.
-- [ ] Form input Keahlian (Skills).
-- [ ] UI: Progress bar tebal bergaya Neo-Brutalism.
+### Fase 1: Isi CV Cepat (Data Entry) - SELESAI
+- [x] Form input Data Diri & Kontak (Nama, Email, Telepon, LinkedIn, Lokasi).
+- [x] Form input Ringkasan Profil (Summary).
+- [x] Form input Pengalaman Kerja (Perusahaan, Posisi, Tanggal, Deskripsi Bullet Points).
+- [x] Form input Pengalaman Organisasi (jika ada).
+- [x] Form input Pendidikan.
+- [x] Form input Keahlian (Skills).
+- [x] Fitur "Reorder": Pengguna dapat mengubah urutan item list (Pengalaman, Organisasi, Pendidikan, Keahlian) tanpa harus menghapus/membuat ulang.
+- [x] UI: Progress bar tebal bergaya Neo-Brutalism.
 
-### Fase 2: Optimasi ATS & Export (Menggantikan Fase 2 Lama)
-- [ ] **Hapus Fitur Template:** Hilangkan komponen "Pilih Desain & Cover", pilihan warna, dan pilihan font. Hanya ada satu format standar ATS.
-- [ ] **Live Preview (ATS Format):**
+### Fase 2: Optimasi ATS & Export - SELESAI
+- [x] **Hapus Fitur Template:** Hilangkan komponen "Pilih Desain & Cover", pilihan warna, dan pilihan font. Hanya ada satu format standar ATS.
+- [x] **Live Preview (ATS Format):**
   - Tampilkan pratinjau CV di sisi kanan layar dengan format standar (single column, hitam putih, tanpa border, tanpa shadow).
   - Pratinjau ini harus persis seperti hasil PDF nanti (menggunakan font Arial/Helvetica).
-- [ ] **ATS Checker (Pemeriksa Kerapian):**
-  - Validasi format tanggal (MM/YYYY).
-  - Peringatan jika ada karakter non-standar atau typo.
-  - Saran kata kunci (keywords) berdasarkan deskripsi pekerjaan yang dituju.
-- [ ] **Unduh Jadi PDF:**
-  - Pilihan ukuran kertas (A4, Letter).
-  - Tombol "Unduh Sekali Klik" (gaya Neo-Brutalism).
-  - Modal konfirmasi "Cek Sebelum Kirim" (pastikan tidak ada typo).
+- [x] **ATS Checker (Pemeriksa Kerapian):**
+  - Validasi kelengkapan data diri, summary, kontak.
+  - Peringatan jika belum ada pengalaman/pendidikan.
+  - Peringatan deskripsi singkat dan pengecekan action verbs/bullet points.
+- [x] **Unduh Jadi PDF:**
+  - Optimalisasi CSS cetak (@page margin 15mm, break-inside, flex-wrap untuk keahlian).
+  - Tombol "Unduh" menggunakan react-to-print.
 
-### Fase 3: Akun Saya & Simpan/Pakai Ulang
-- [ ] **Akun Saya:**
-  - Autentikasi (Daftar Akun, Masuk, Keluar, Lupa Kata Sandi).
-- [ ] **Simpan & Pakai Ulang:**
-  - Auto-save draf ke database.
-  - Dashboard "Daftar CV Saya" berbentuk grid kartu tebal (Neo-Brutalism).
-  - Fitur "Duplikat untuk Lamaran Lain" (menggandakan CV untuk dimodifikasi).
+### Fase 3: Local-First Storage & Simpan Ulang - SELESAI
+- [x] **Auto-Save:** Semua input form dan CV state disimpan secara real-time ke dalam local storage menggunakan Zustand Persist Middleware. Pengguna tidak akan kehilangan data saat merefresh halaman.
+- [x] **Tanpa Akun (No-Auth):** Fitur Akun/Dashboard dan Database dihapus demi pengalaman "1 klik langsung mulai" (Frictionless).
 
-### Fase 4: Tips & Bantuan
-- [ ] **Tips & Bantuan:**
-  - Contoh Kalimat Siap Pakai (Action verbs untuk ATS).
-  - Panduan Singkat (Cara membuat CV ATS).
-  - Tanya & Lapor Masalah.
+### Fase 4: Tips & Bantuan - SELESAI
+- [x] Halaman FAQ & Bantuan terintegrasi tanpa mengganggu alur pembuatan CV.
+- [x] Bagian CTA/Kontak (Email & Sosial Media) serta Dukungan (Trakteer) terpasang di Landing Page.
 
-## 🗄️ Rancangan Database (Revisi)
-1. **users:** id, email, password_hash, created_at.
-2. **resumes:** id, user_id, title, target_job_title, created_at, updated_at. (Hapus template_id, color_theme, font_family).
-3. **resume_sections:** id, resume_id, type (summary/experience/organization/education/skill), content (JSONB).
+## 🗄️ Rancangan Database
+- *Dihapus. Aplikasi kini 100% Client-side dan Local-first (tanpa backend/database).*
 
 ## 🚀 Getting Started (Untuk Developer/AI)
 1. Buka proyek Next.js yang sudah ada.

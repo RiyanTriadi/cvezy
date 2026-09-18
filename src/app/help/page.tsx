@@ -67,7 +67,7 @@ const faqs = [
   },
   {
     q: "Apakah CV bisa diedit setelah disimpan?",
-    a: "Ya, Anda bisa kembali mengedit CV kapan saja dari dashboard 'CV Saya'.",
+    a: "Ya, selama Anda tidak menghapus data browser, Anda bisa kembali mengedit CV kapan saja dengan masuk ke menu 'Buat CV'.",
   },
 ];
 
@@ -286,12 +286,25 @@ export default function HelpPage() {
               Masih Butuh Bantuan?
             </BrutalCardTitle>
             <p className="font-body text-gray-500 mb-6">
-              Hubungi tim kami untuk pertanyaan atau laporan masalah.
+              Hubungi developer untuk pertanyaan atau laporan masalah.
             </p>
-            <BrutalButton variant="primary" size="lg">
-              <MessageCircle size={18} strokeWidth={3} />
-              Hubungi Kami
-            </BrutalButton>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a href="https://github.com/RiyanTriadi" target="_blank" rel="noopener noreferrer">
+                <BrutalButton variant="dark" size="md">
+                  GitHub
+                </BrutalButton>
+              </a>
+              <a href="https://linkedin.com/in/riyantriadi" target="_blank" rel="noopener noreferrer">
+                <BrutalButton variant="primary" size="md">
+                  LinkedIn
+                </BrutalButton>
+              </a>
+              <a href="https://instagram.com/riyantriadi" target="_blank" rel="noopener noreferrer">
+                <BrutalButton variant="secondary" size="md" className="bg-brand-pink hover:bg-brand-pink/90">
+                  Instagram
+                </BrutalButton>
+              </a>
+            </div>
           </BrutalCard>
         </div>
       </main>

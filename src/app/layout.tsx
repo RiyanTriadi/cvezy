@@ -16,12 +16,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Cvezy — Buat CV Profesional dalam 5 Menit",
+  title: "Cvezy - Buat CV Profesional dalam Hitungan Menit",
   description:
     "Platform pembuat CV profesional gratis. Isi data lalu unduh PDF. Buat CV yang rapi dan siap kirim untuk lamaran kerja Anda.",
   keywords: ["CV", "resume", "generator", "pembuat CV", "CV profesional", "lamaran kerja"],
   openGraph: {
-    title: "Cvezy — Buat CV Profesional dalam 5 Menit",
+    title: "Cvezy - Buat CV Profesional dalam Hitungan Menit",
     description: "Platform pembuat CV profesional gratis. Buat CV yang rapi dan siap kirim.",
     type: "website",
   },

@@ -4,7 +4,7 @@
 @import "tailwindcss";
 
 /* ============================================
-   CVEZY — Neo-Brutalism Design System
+   CVEZY - Neo-Brutalism Design System
    ============================================ */
 
 /* --- Tailwind v4 Theme Configuration --- */
@@ -52,40 +52,93 @@
   --animate-marquee: marquee 20s linear infinite;
 
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
   }
 
   @keyframes wiggle {
-    0%, 100% { transform: rotate(-3deg); }
-    50% { transform: rotate(3deg); }
+
+    0%,
+    100% {
+      transform: rotate(-3deg);
+    }
+
+    50% {
+      transform: rotate(3deg);
+    }
   }
 
   @keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes bounceIn {
-    0% { opacity: 0; transform: scale(0.3); }
-    50% { opacity: 1; transform: scale(1.05); }
-    70% { transform: scale(0.9); }
-    100% { transform: scale(1); }
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    70% {
+      transform: scale(0.9);
+    }
+
+    100% {
+      transform: scale(1);
+    }
   }
 
   @keyframes pulseBorder {
-    0%, 100% { border-color: #000000; }
-    50% { border-color: #FFD700; }
+
+    0%,
+    100% {
+      border-color: #000000;
+    }
+
+    50% {
+      border-color: #FFD700;
+    }
   }
 
   @keyframes marquee {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0%);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
   }
 }
 
@@ -111,7 +164,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   text-transform: uppercase;
@@ -186,13 +244,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bg-diagonal-pattern {
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 10px,
-    rgba(0, 0, 0, 0.03) 10px,
-    rgba(0, 0, 0, 0.03) 20px
-  );
+  background-image: repeating-linear-gradient(45deg,
+      transparent,
+      transparent 10px,
+      rgba(0, 0, 0, 0.03) 10px,
+      rgba(0, 0, 0, 0.03) 20px);
 }
 
 /* --- Marquee --- */
@@ -214,13 +270,14 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  
+
   @page {
-    margin: 0;
+    margin: 15mm;
   }
 }
 
 /* --- ATS Document Font Reset --- */
-.ats-document, .ats-document * {
+.ats-document,
+.ats-document * {
   font-family: Arial, Helvetica, sans-serif !important;
 }

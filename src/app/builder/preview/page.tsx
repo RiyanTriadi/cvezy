@@ -16,9 +16,9 @@ import { useReactToPrint } from "react-to-print";
 const renderDescription = (text: string) => {
   if (!text) return null;
   const lines = text.split('\n').filter(line => line.trim().length > 0);
-  
+
   const isList = lines.some(line => line.trim().startsWith('-') || line.trim().startsWith('•'));
-  
+
   if (isList) {
     return (
       <ul style={{ listStyleType: "disc", paddingLeft: "1.25rem", marginTop: "0.25rem", marginBottom: "0.25rem" }}>
@@ -34,7 +34,7 @@ const renderDescription = (text: string) => {
       </ul>
     );
   }
-  
+
   return (
     <div style={{ marginTop: "0.25rem" }}>
       {lines.map((line, i) => (
@@ -44,6 +44,12 @@ const renderDescription = (text: string) => {
       ))}
     </div>
   );
+};
+
+const formatYearOnly = (dateString: string) => {
+  if (!dateString) return "";
+  const parts = dateString.split("-");
+  return parts[0];
 };
 
 export default function PreviewPage() {
@@ -64,11 +70,11 @@ export default function PreviewPage() {
   const atsAnalysis = React.useMemo(() => {
     let score = 100;
     const issues: { type: 'error' | 'warning' | 'success', text: string }[] = [];
-    
+
     if (!personalInfo.fullName) { score -= 15; issues.push({ type: 'error', text: "Nama lengkap wajib diisi." }); }
     if (!personalInfo.email) { score -= 10; issues.push({ type: 'error', text: "Email belum diisi." }); }
     if (!personalInfo.phone) { score -= 10; issues.push({ type: 'error', text: "Nomor telepon belum diisi." }); }
-    
+
     if (!personalInfo.summary || personalInfo.summary.length < 50) {
       score -= 5;
       issues.push({ type: 'warning', text: "Ringkasan profil terlalu singkat. Tambahkan sedikit penjelasan objektif karir." });
@@ -84,18 +90,18 @@ export default function PreviewPage() {
           issues.push({ type: 'warning', text: `Deskripsi pada ${exp.company} terlalu singkat. Tambahkan poin kontribusi (action verbs).` });
         }
         if (exp.description && !exp.description.includes('-') && !exp.description.includes('•')) {
-           issues.push({ type: 'warning', text: `Sangat disarankan menggunakan bullet points (-) pada pengalaman ${exp.company} agar mudah di-scan ATS.` });
+          issues.push({ type: 'warning', text: `Sangat disarankan menggunakan bullet points (-) pada pengalaman ${exp.company} agar mudah di-scan ATS.` });
         }
       });
     }
-    
+
     if (education.length === 0) { score -= 10; issues.push({ type: 'error', text: "Data pendidikan belum diisi." }); }
     if (skills.length === 0) { score -= 10; issues.push({ type: 'error', text: "Belum ada keahlian (skills) yang ditambahkan." }); }
-    
+
     if (score === 100) {
       issues.push({ type: 'success', text: "CV Anda sudah sangat terstruktur dan siap lolos ATS!" });
     }
-    
+
     return { score: Math.max(0, score), issues };
   }, [personalInfo, experiences, organizations, education, skills]);
 
@@ -129,14 +135,14 @@ export default function PreviewPage() {
         </div>
 
         {/* The ATS Printable CV Container */}
-        <div 
+        <div
           className="bg-white border-4 border-brutal-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-x-auto print:border-none print:shadow-none print:overflow-visible"
         >
           {/* A4 Document styling wrapper */}
-          <div 
-            ref={componentRef} 
-            className="ats-document bg-white min-w-[700px] max-w-[800px] min-h-[1000px] mx-auto text-black print:min-w-0 print:max-w-none print:min-h-0"
-            style={{ padding: "40px 60px", boxSizing: "border-box" }}
+          <div
+            ref={componentRef}
+            className="ats-document bg-white min-w-[700px] max-w-[800px] min-h-[1000px] mx-auto text-black py-[40px] px-[60px] print:p-0 print:min-w-0 print:max-w-none print:min-h-0"
+            style={{ boxSizing: "border-box" }}
           >
             {/* Header / Contact Info */}
             <div style={{ textAlign: "center", marginBottom: "20px" }}>
@@ -162,15 +168,15 @@ export default function PreviewPage() {
             {/* Experience */}
             {experiences.length > 0 && (
               <div style={{ marginBottom: "16px" }}>
-                <h2 style={{ fontSize: "14px", fontWeight: "bold", textTransform: "uppercase", borderBottom: "1px solid #000", paddingBottom: "4px", marginBottom: "8px", color: "#000" }}>
+                <h2 style={{ fontSize: "14px", fontWeight: "bold", textTransform: "uppercase", borderBottom: "1px solid #000", paddingBottom: "4px", marginBottom: "8px", color: "#000", pageBreakAfter: "avoid", breakAfter: "avoid" }}>
                   Pengalaman Kerja
                 </h2>
                 {experiences.map((exp) => (
-                  <div key={exp.id} style={{ marginBottom: "12px" }}>
+                  <div key={exp.id} style={{ marginBottom: "12px", breakInside: "avoid" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "2px" }}>
                       <div style={{ fontWeight: "bold", fontSize: "14px", color: "#000" }}>{exp.company}</div>
                       <div style={{ fontWeight: "bold", fontSize: "14px", color: "#000" }}>
-                        {exp.startDate} — {exp.isCurrent ? "Sekarang" : exp.endDate}
+                        {formatYearOnly(exp.startDate)} - {exp.isCurrent ? "Sekarang" : formatYearOnly(exp.endDate)}
                       </div>
                     </div>
                     <div style={{ fontSize: "14px", fontWeight: "bold", fontStyle: "italic", color: "#000", marginBottom: "4px" }}>
@@ -185,15 +191,15 @@ export default function PreviewPage() {
             {/* Organizations */}
             {organizations.length > 0 && (
               <div style={{ marginBottom: "16px" }}>
-                <h2 style={{ fontSize: "14px", fontWeight: "bold", textTransform: "uppercase", borderBottom: "1px solid #000", paddingBottom: "4px", marginBottom: "8px", color: "#000" }}>
+                <h2 style={{ fontSize: "14px", fontWeight: "bold", textTransform: "uppercase", borderBottom: "1px solid #000", paddingBottom: "4px", marginBottom: "8px", color: "#000", pageBreakAfter: "avoid", breakAfter: "avoid" }}>
                   Pengalaman Organisasi
                 </h2>
                 {organizations.map((org) => (
-                  <div key={org.id} style={{ marginBottom: "12px" }}>
+                  <div key={org.id} style={{ marginBottom: "12px", breakInside: "avoid" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "2px" }}>
                       <div style={{ fontWeight: "bold", fontSize: "14px", color: "#000" }}>{org.organizationName}</div>
                       <div style={{ fontWeight: "bold", fontSize: "14px", color: "#000" }}>
-                        {org.startDate} — {org.isCurrent ? "Sekarang" : org.endDate}
+                        {formatYearOnly(org.startDate)} - {org.isCurrent ? "Sekarang" : formatYearOnly(org.endDate)}
                       </div>
                     </div>
                     <div style={{ fontSize: "14px", fontWeight: "bold", fontStyle: "italic", color: "#000", marginBottom: "4px" }}>
@@ -208,19 +214,19 @@ export default function PreviewPage() {
             {/* Education */}
             {education.length > 0 && (
               <div style={{ marginBottom: "16px" }}>
-                <h2 style={{ fontSize: "14px", fontWeight: "bold", textTransform: "uppercase", borderBottom: "1px solid #000", paddingBottom: "4px", marginBottom: "8px", color: "#000" }}>
+                <h2 style={{ fontSize: "14px", fontWeight: "bold", textTransform: "uppercase", borderBottom: "1px solid #000", paddingBottom: "4px", marginBottom: "8px", color: "#000", pageBreakAfter: "avoid", breakAfter: "avoid" }}>
                   Pendidikan
                 </h2>
                 {education.map((edu) => (
-                  <div key={edu.id} style={{ marginBottom: "8px" }}>
+                  <div key={edu.id} style={{ marginBottom: "8px", breakInside: "avoid" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "2px" }}>
                       <div style={{ fontWeight: "bold", fontSize: "14px", color: "#000" }}>{edu.institution}</div>
                       <div style={{ fontWeight: "bold", fontSize: "14px", color: "#000" }}>
-                        {edu.startYear} — {edu.endYear}
+                        {edu.startYear} - {edu.endYear}
                       </div>
                     </div>
                     <div style={{ fontSize: "14px", color: "#000", marginBottom: "2px" }}>
-                      {edu.degree} {edu.field && `— ${edu.field}`}
+                      {edu.degree} {edu.field && `- ${edu.field}`}
                     </div>
                     {edu.description && (
                       <div style={{ fontSize: "14px", color: "#000" }}>
@@ -237,19 +243,22 @@ export default function PreviewPage() {
             {/* Skills */}
             {skills.length > 0 && (
               <div style={{ marginBottom: "16px" }}>
-                <h2 style={{ fontSize: "14px", fontWeight: "bold", textTransform: "uppercase", borderBottom: "1px solid #000", paddingBottom: "4px", marginBottom: "8px", color: "#000" }}>
+                <h2 style={{ fontSize: "14px", fontWeight: "bold", textTransform: "uppercase", borderBottom: "1px solid #000", paddingBottom: "4px", marginBottom: "8px", color: "#000", pageBreakAfter: "avoid", breakAfter: "avoid" }}>
                   Keahlian
                 </h2>
                 <div style={{ fontSize: "14px", color: "#000", lineHeight: "1.5" }}>
-                  <ul style={{ listStyleType: "disc", paddingLeft: "1.25rem", margin: 0, display: "grid", gridTemplateColumns: "1fr 1fr", rowGap: "4px" }}>
+                  <ul style={{ listStyleType: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap" }}>
                     {skills.map(s => (
-                      <li key={s.id}>{s.name}</li>
+                      <li key={s.id} style={{ width: "50%", paddingRight: "10px", marginBottom: "4px", breakInside: "avoid", display: "flex", alignItems: "flex-start" }}>
+                        <span style={{ marginRight: "6px" }}>•</span>
+                        <span>{s.name}</span>
+                      </li>
                     ))}
                   </ul>
                 </div>
               </div>
             )}
-            
+
             {/* Empty state instruction */}
             {!personalInfo.fullName && experiences.length === 0 && education.length === 0 && (
               <div style={{ textAlign: "center", color: "#888", marginTop: "100px", fontSize: "14px" }}>
@@ -268,7 +277,7 @@ export default function PreviewPage() {
             <FileCheck2 size={24} strokeWidth={3} />
             <BrutalCardTitle className="mb-0">ATS Checker</BrutalCardTitle>
           </div>
-          
+
           <div className="mb-6 flex items-end gap-2 border-b-4 border-brutal-black pb-4">
             <span className="font-heading font-bold text-5xl tracking-tighter leading-none">
               {atsAnalysis.score}
@@ -278,13 +287,13 @@ export default function PreviewPage() {
 
           <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2">
             {atsAnalysis.issues.map((issue, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className={cn(
                   "p-3 border-2 border-brutal-black font-body text-sm flex items-start gap-2",
                   issue.type === 'error' ? "bg-brand-pink text-brutal-black font-bold" :
-                  issue.type === 'warning' ? "bg-brand-yellow text-brutal-black font-medium" :
-                  "bg-brand-green text-brutal-black font-bold"
+                    issue.type === 'warning' ? "bg-brand-yellow text-brutal-black font-medium" :
+                      "bg-brand-green text-brutal-black font-bold"
                 )}
               >
                 {issue.type === 'error' && <AlertTriangle size={16} className="shrink-0 mt-0.5" />}
@@ -307,20 +316,8 @@ export default function PreviewPage() {
               icon={<Download size={20} strokeWidth={3} />}
               onClick={() => handlePrint()}
             >
-              Unduh PDF (ATS)
+              Unduh
             </BrutalButton>
-            
-            <Link href="/dashboard" className="w-full">
-              <BrutalButton variant="secondary" size="lg" className="w-full justify-center">
-                Simpan ke Dashboard
-              </BrutalButton>
-            </Link>
-
-            <Link href="/builder/education" className="w-full mt-2">
-              <BrutalButton variant="ghost" size="md" className="w-full justify-center" icon={<ArrowLeft size={16} strokeWidth={3} />}>
-                Kembali Edit
-              </BrutalButton>
-            </Link>
           </div>
         </BrutalCard>
       </div>

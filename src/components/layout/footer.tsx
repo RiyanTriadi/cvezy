@@ -36,8 +36,8 @@ export function Footer() {
               </span>
             </Link>
             <p className="font-body text-sm text-gray-400 leading-relaxed">
-              Platform pembuat CV profesional dengan gaya Neo-Brutalism. 
-              Buat, kustomisasi, dan unduh CV dalam hitungan menit.
+              Platform pembuat CV profesional dengan format standar ATS. 
+              Buat dan unduh CV Anda dengan mudah dalam hitungan menit.
             </p>
           </div>
 
@@ -49,7 +49,6 @@ export function Footer() {
             <ul className="space-y-2">
               {[
                 { href: "/builder/personal", label: "Buat CV Baru" },
-                { href: "/dashboard", label: "CV Saya" },
                 { href: "/help", label: "Bantuan & Tips" },
               ].map((link) => (
                 <li key={link.href}>
@@ -94,7 +93,7 @@ export function Footer() {
             Dibuat oleh Riyan Triadi © {new Date().getFullYear()}
           </p>
           <a
-            href="https://github.com"
+            href="https://github.com/RiyanTriadi"
             target="_blank"
             rel="noopener noreferrer"
             className="w-10 h-10 bg-brutal-white border-4 border-brutal-white flex items-center justify-center text-brutal-black hover:bg-brand-yellow transition-colors"

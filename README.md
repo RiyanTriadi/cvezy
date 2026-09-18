@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cvezy
 
-## Getting Started
+Cvezy adalah aplikasi web berbasis generator yang dirancang untuk membantu pengguna membuat CV **ATS-Friendly** (Applicant Tracking System) yang rapi, profesional, dan siap kirim dalam waktu singkat. 
 
-First, run the development server:
+Berbeda dengan aplikasi lain, Cvezy **100% gratis**, **tanpa perlu mendaftar akun**, dan langsung bisa digunakan. Antarmuka (UI) aplikasi menggunakan gaya desain **Neo-Brutalism** yang berani dan menyenangkan, namun **hasil output CV-nya didesain bersih, minimalis, dan 100% ATS-Friendly** (single-column, hitam putih, tanpa grafis).
+
+## ✨ Fitur Utama
+
+- **Langsung Pakai Tanpa Login**: Tidak perlu mendaftar akun, data langsung disimpan di memori lokal peramban (Local Storage).
+- **Auto-Save**: Semua perubahan form akan otomatis tersimpan. Tidak perlu takut kehilangan data jika tidak sengaja menutup tab.
+- **Reorder Fleksibel**: Anda dapat dengan mudah mengubah urutan riwayat Pengalaman, Pendidikan, Organisasi, maupun Keahlian.
+- **Live Preview & ATS Checker**: Lihat hasil CV secara real-time. Sistem juga akan memeriksa (ATS Checker) apakah CV Anda sudah rapi dan memberi peringatan/skor jika ada data penting yang belum terisi.
+- **Ekspor PDF Sempurna**: Hasil akhir dapat langsung diunduh menjadi format PDF dengan tata letak *(layout)*, margin, dan pagination yang teroptimasi untuk mesin ATS.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js (App Router)](https://nextjs.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **State Management**: [Zustand](https://zustand-demo.pmnd.rs/) (dengan *Persist Middleware*)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Print/PDF Export**: [react-to-print](https://github.com/gregnb/react-to-print)
+
+## 🚀 Menjalankan Secara Lokal
+
+Pertama, jalankan *development server*:
 
 ```bash
 npm run dev
-# or
+# atau
 yarn dev
-# or
+# atau
 pnpm dev
-# or
+# atau
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka [http://localhost:3000](http://localhost:3000) di peramban Anda untuk melihat hasilnya. Anda bisa mulai menyunting dengan mengubah `src/app/page.tsx`. Halaman akan otomatis diperbarui.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 Lisensi
+Dikembangkan secara mandiri (Solo Developer). Hak cipta © Riyan Triadi.

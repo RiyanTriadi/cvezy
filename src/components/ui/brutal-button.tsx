@@ -52,10 +52,10 @@ export function BrutalButton({
         "shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]",
         // Transition
         "transition-all duration-150 ease-in-out",
-        // Hover — press effect
+        // Hover - press effect
         "hover:translate-x-[2px] hover:translate-y-[2px]",
         "hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]",
-        // Active — fully pressed
+        // Active - fully pressed
         "active:translate-x-[4px] active:translate-y-[4px]",
         "active:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)]",
         // Disabled

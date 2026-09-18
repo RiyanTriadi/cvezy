@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/builder/personal", label: "Buat CV" },
-  { href: "/dashboard", label: "CV Saya" },
   { href: "/help", label: "Bantuan" },
 ];
 

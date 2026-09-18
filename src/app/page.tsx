@@ -16,6 +16,9 @@ import {
   Star,
   Clock,
   Shield,
+  Coffee,
+  MessageSquare,
+  Mail,
 } from "lucide-react";
 import { BrutalButton } from "@/components/ui/brutal-button";
 import { BrutalCard, BrutalCardTitle, BrutalCardContent } from "@/components/ui/brutal-card";
@@ -73,7 +76,7 @@ function HeroSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left — Text */}
+          {/* Left - Text */}
           <motion.div
             initial="hidden"
             animate="visible"
@@ -99,7 +102,7 @@ function HeroSection() {
               </span>
               <br />
               Dalam{" "}
-              <span className="text-brand-blue">5 Menit</span>
+              <span className="text-brand-blue">Hitungan Menit</span>
             </motion.h1>
 
             <motion.p
@@ -149,20 +152,10 @@ function HeroSection() {
                   </div>
                 ))}
               </div>
-              <div>
-                <div className="flex items-center gap-1 mb-0.5">
-                  {[1, 2, 3, 4, 5].map((s) => (
-                    <Star key={s} size={14} className="text-brand-yellow fill-brand-yellow" />
-                  ))}
-                </div>
-                <p className="font-body text-sm text-gray-500">
-                  <span className="font-bold text-brutal-black">2,500+</span> CV dibuat bulan ini
-                </p>
-              </div>
             </motion.div>
           </motion.div>
 
-          {/* Right — CV Preview Mock */}
+          {/* Right - CV Preview Mock */}
           <motion.div
             initial={{ opacity: 0, x: 60, rotate: 3 }}
             animate={{ opacity: 1, x: 0, rotate: 0 }}
@@ -353,7 +346,7 @@ const features = [
   {
     icon: Clock,
     title: "Cepat & Efisien",
-    description: "Selesai dalam 5 menit. Auto-save memastikan data Anda tidak pernah hilang.",
+    description: "Selesai dalam Hitungan Menit. Auto-save memastikan data Anda tidak pernah hilang.",
     color: "cyan" as const,
   },
   {
@@ -432,7 +425,7 @@ function StatsSection() {
   const stats = [
     { value: "10,000+", label: "CV Dibuat", color: "text-brand-yellow" },
     { value: "4.9/5", label: "Rating Pengguna", color: "text-brand-blue" },
-    { value: "5 Menit", label: "Rata-rata Waktu", color: "text-brand-pink" },
+    { value: "Hitungan Menit", label: "Rata-rata Waktu", color: "text-brand-pink" },
     { value: "100%", label: "Gratis", color: "text-brand-green" },
   ];
 
@@ -468,15 +461,12 @@ function StatsSection() {
 }
 
 /* ============================================
-   CTA FINAL SECTION
+   TRAKTEER SECTION
    ============================================ */
-function CTASection() {
+function TrakteerSection() {
   return (
-    <section className="py-20 md:py-28 bg-brand-yellow border-t-4 border-brutal-black relative overflow-hidden">
-      {/* Pattern overlay */}
-      <div className="absolute inset-0 bg-diagonal-pattern" />
-
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+    <section className="py-20 bg-brand-pink border-t-4 border-brutal-black relative overflow-hidden">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -484,52 +474,88 @@ function CTASection() {
           variants={staggerContainer}
         >
           <motion.div variants={scaleIn} transition={{ duration: 0.5 }}>
-            <div className="inline-block bg-brutal-black text-brand-yellow border-4 border-brutal-black p-3 mb-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.3)]">
-              <CheckCircle size={40} strokeWidth={3} />
+            <div className="inline-block bg-brutal-white text-brutal-black border-4 border-brutal-black p-4 rounded-full mb-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all">
+              <Coffee size={40} strokeWidth={2.5} className="text-brand-yellow drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]" />
             </div>
           </motion.div>
 
           <motion.h2
             variants={fadeInUp}
-            transition={{ duration: 0.6 }}
-            className="font-heading font-bold text-3xl md:text-5xl lg:text-6xl uppercase tracking-tighter mb-6"
+            className="font-heading font-bold text-3xl md:text-5xl uppercase tracking-tight mb-4"
           >
-            Siap Membuat CV yang Memukau?
+            Dukung Cvezy Terus Gratis!
           </motion.h2>
 
           <motion.p
             variants={fadeInUp}
-            transition={{ duration: 0.6 }}
-            className="font-body text-lg md:text-xl text-brutal-black/70 mb-10 max-w-2xl mx-auto"
+            className="font-body text-lg md:text-xl text-brutal-black/80 mb-8 max-w-2xl mx-auto"
           >
-            Bergabung dengan ribuan pengguna yang sudah berhasil membuat CV profesional
-            dan mendapatkan pekerjaan impian mereka.
+            Cvezy dikembangkan secara mandiri dan 100% gratis. Jika aplikasi ini membantumu mendapatkan pekerjaan impian, pertimbangkan untuk mentraktir developer kopi! ☕
           </motion.p>
 
-          <motion.div
-            variants={fadeInUp}
-            transition={{ duration: 0.6 }}
-          >
-            <Link href="/builder/personal">
-              <BrutalButton
-                variant="dark"
-                size="xl"
-                icon={<ArrowRight size={24} strokeWidth={3} />}
-                iconPosition="right"
-                className="text-lg"
-              >
-                Buat CV Gratis Sekarang
+          <motion.div variants={fadeInUp}>
+            <a href="https://teer.id/ryn3d" target="_blank" rel="noopener noreferrer">
+              <BrutalButton variant="primary" size="xl" icon={<Coffee size={24} strokeWidth={3} />}>
+                Traktir Kopi
               </BrutalButton>
-            </Link>
+            </a>
           </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================================
+   CONTACT SECTION
+   ============================================ */
+function ContactSection() {
+  return (
+    <section className="py-20 bg-brand-blue border-t-4 border-brutal-black text-brutal-white">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+        >
+          <motion.div variants={scaleIn} transition={{ duration: 0.5 }}>
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-brutal-white text-brand-blue border-4 border-brutal-black mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <MessageSquare size={32} strokeWidth={3} />
+            </div>
+          </motion.div>
+
+          <motion.h2
+            variants={fadeInUp}
+            className="font-heading font-bold text-3xl md:text-4xl uppercase tracking-tight mb-4"
+          >
+            Punya Saran atau Kendala?
+          </motion.h2>
 
           <motion.p
             variants={fadeInUp}
-            transition={{ duration: 0.6 }}
-            className="mt-6 font-body text-sm text-brutal-black/50"
+            className="font-body text-lg text-blue-100 mb-8 max-w-xl mx-auto"
           >
-            Tidak perlu daftar akun. Langsung mulai.
+            Saya selalu terbuka untuk saran fitur baru atau laporan masalah bug. Jangan ragu untuk menghubungi saya.
           </motion.p>
+
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="https://github.com/RiyanTriadi" target="_blank" rel="noopener noreferrer">
+              <BrutalButton variant="dark" size="lg" className="w-full sm:w-auto">
+                GitHub
+              </BrutalButton>
+            </a>
+            <a href="https://linkedin.com/in/riyantriadi" target="_blank" rel="noopener noreferrer">
+              <BrutalButton variant="primary" size="lg" className="w-full sm:w-auto text-brutal-black hover:text-brutal-black">
+                LinkedIn
+              </BrutalButton>
+            </a>
+            <a href="https://instagram.com/riyantriadi" target="_blank" rel="noopener noreferrer">
+              <BrutalButton variant="danger" size="lg" className="w-full sm:w-auto text-brutal-black hover:text-brutal-black">
+                Instagram
+              </BrutalButton>
+            </a>
+          </motion.div>
         </motion.div>
       </div>
     </section>
@@ -548,7 +574,8 @@ export default function LandingPage() {
         <HowItWorksSection />
         <FeaturesSection />
         <StatsSection />
-        <CTASection />
+        <TrakteerSection />
+        <ContactSection />
       </main>
       <Footer />
     </>
