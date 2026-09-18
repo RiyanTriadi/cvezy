@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowLeft, Eye, Download, FileCheck2, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowDown, Eye, Download, FileCheck2, AlertTriangle, CheckCircle2 } from "lucide-react";
 import { BrutalButton } from "@/components/ui/brutal-button";
 import { BrutalCard, BrutalCardTitle } from "@/components/ui/brutal-card";
 import { BrutalBadge } from "@/components/ui/brutal-badge";
@@ -116,10 +116,10 @@ export default function PreviewPage() {
   if (!isClient) return null; // Avoid hydration mismatch
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8">
-      {/* Left: CV Preview Area */}
-      <div className="flex-1">
-        <div className="mb-6 flex items-center justify-between">
+    <div className="flex flex-col gap-8">
+      {/* Top: CV Preview Area */}
+      <div className="w-full">
+        <div className="mb-6 flex-col md:flex-row items-center justify-between">
           <div>
             <BrutalBadge variant="cyan" className="mb-3">
               <Eye size={14} strokeWidth={3} className="mr-1" />
@@ -132,6 +132,15 @@ export default function PreviewPage() {
               Format ini 100% dioptimalkan untuk dibaca oleh mesin ATS.
             </p>
           </div>
+          <BrutalButton
+            variant="ghost"
+            size="sm"
+            onClick={() => document.getElementById("actions-panel")?.scrollIntoView({ behavior: "smooth" })}
+            icon={<ArrowDown size={16} strokeWidth={3} />}
+            className="flex mt-4 md:mt-0"
+          >
+            Cek ATS & Unduh
+          </BrutalButton>
         </div>
 
         {/* The ATS Printable CV Container */}
@@ -269,10 +278,10 @@ export default function PreviewPage() {
         </div>
       </div>
 
-      {/* Right: Sidebar / ATS Checker & Actions */}
-      <div className="w-full lg:w-80 flex flex-col gap-6">
+      {/* Bottom: ATS Checker & Actions */}
+      <div id="actions-panel" className="w-full flex flex-col md:flex-row gap-6 mb-8 scroll-mt-6">
         {/* ATS Checker Panel */}
-        <BrutalCard className="pt-6" accentColor={atsAnalysis.score >= 80 ? "green" : atsAnalysis.score >= 50 ? "yellow" : "pink"}>
+        <BrutalCard className="pt-6 flex-1" accentColor={atsAnalysis.score >= 80 ? "green" : atsAnalysis.score >= 50 ? "yellow" : "pink"}>
           <div className="flex items-center gap-2 mb-4">
             <FileCheck2 size={24} strokeWidth={3} />
             <BrutalCardTitle className="mb-0">ATS Checker</BrutalCardTitle>
@@ -306,7 +315,7 @@ export default function PreviewPage() {
         </BrutalCard>
 
         {/* Actions */}
-        <BrutalCard className="pt-6">
+        <BrutalCard className="pt-6 md:w-80 shrink-0 h-fit">
           <BrutalCardTitle className="mb-4">Tindakan</BrutalCardTitle>
           <div className="flex flex-col gap-3">
             <BrutalButton
