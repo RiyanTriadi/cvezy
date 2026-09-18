@@ -71,9 +71,9 @@ export default function OrganizationPage() {
 
         {organizations.map((org, index) => (
           <BrutalCard key={org.id} accentColor="yellow" className="pt-8">
-            <div className="flex items-center justify-between mb-6">
-              <BrutalCardTitle>Organisasi #{index + 1}</BrutalCardTitle>
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <BrutalCardTitle className="mb-0">Organisasi #{index + 1}</BrutalCardTitle>
+              <div className="flex items-center gap-2 w-full sm:w-auto">
                 <button
                   onClick={() => reorderOrganization(index, "up")}
                   disabled={index === 0}
@@ -182,24 +182,26 @@ export default function OrganizationPage() {
       </div>
 
       {/* Navigation */}
-      <div className="flex justify-between">
-        <Link href="/builder/experience">
+      <div className="flex flex-col-reverse sm:flex-row justify-between gap-4 mt-8">
+        <Link href="/builder/experience" className="w-full sm:w-auto">
           <BrutalButton
             variant="ghost"
             size="lg"
+            className="w-full justify-center"
             icon={<ArrowLeft size={20} strokeWidth={3} />}
           >
             Kembali
           </BrutalButton>
         </Link>
-        <Link href="/builder/education">
+        <Link href="/builder/education" className="w-full sm:w-auto">
           <BrutalButton
             variant="primary"
             size="lg"
+            className="w-full justify-center"
             icon={<ArrowRight size={20} strokeWidth={3} />}
             iconPosition="right"
           >
-            Lanjut: Pendidikan
+            Lanjut
           </BrutalButton>
         </Link>
       </div>

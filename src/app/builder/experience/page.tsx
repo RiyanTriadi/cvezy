@@ -71,9 +71,9 @@ export default function ExperiencePage() {
 
         {experiences.map((exp, index) => (
           <BrutalCard key={exp.id} accentColor="blue" className="pt-8">
-            <div className="flex items-center justify-between mb-6">
-              <BrutalCardTitle>Pengalaman #{index + 1}</BrutalCardTitle>
-              <div className="flex items-center gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <BrutalCardTitle className="mb-0">Pengalaman #{index + 1}</BrutalCardTitle>
+              <div className="flex items-center gap-2 w-full sm:w-auto">
                 <button
                   onClick={() => reorderExperience(index, "up")}
                   disabled={index === 0}
@@ -181,24 +181,26 @@ export default function ExperiencePage() {
       </div>
 
       {/* Navigation */}
-      <div className="flex justify-between">
-        <Link href="/builder/personal">
+      <div className="flex flex-col-reverse sm:flex-row justify-between gap-4 mt-8">
+        <Link href="/builder/personal" className="w-full sm:w-auto">
           <BrutalButton
             variant="ghost"
             size="lg"
+            className="w-full justify-center"
             icon={<ArrowLeft size={20} strokeWidth={3} />}
           >
             Kembali
           </BrutalButton>
         </Link>
-        <Link href="/builder/organization">
+        <Link href="/builder/organization" className="w-full sm:w-auto">
           <BrutalButton
             variant="primary"
             size="lg"
+            className="w-full justify-center"
             icon={<ArrowRight size={20} strokeWidth={3} />}
             iconPosition="right"
           >
-            Lanjut: Organisasi
+            Lanjut
           </BrutalButton>
         </Link>
       </div>

@@ -318,6 +318,16 @@ export default function PreviewPage() {
             >
               Unduh
             </BrutalButton>
+            <Link href="/builder/education" className="w-full">
+              <BrutalButton
+                variant="ghost"
+                size="lg"
+                className="w-full justify-center"
+                icon={<ArrowLeft size={20} strokeWidth={3} />}
+              >
+                Kembali
+              </BrutalButton>
+            </Link>
           </div>
         </BrutalCard>
       </div>

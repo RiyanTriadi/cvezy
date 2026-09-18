@@ -110,9 +110,9 @@ export default function EducationPage() {
 
           {education.map((edu, index) => (
             <BrutalCard key={edu.id} accentColor="green" className="pt-8">
-              <div className="flex items-center justify-between mb-6">
-                <BrutalCardTitle>Pendidikan #{index + 1}</BrutalCardTitle>
-                <div className="flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                <BrutalCardTitle className="mb-0">Pendidikan #{index + 1}</BrutalCardTitle>
+                <div className="flex items-center gap-2 w-full sm:w-auto">
                   <button
                     onClick={() => reorderEducation(index, "up")}
                     disabled={index === 0}
@@ -233,20 +233,22 @@ export default function EducationPage() {
 
           {skills.map((skill, index) => (
             <BrutalCard key={skill.id} className="!p-4">
-              <div className="flex items-center gap-4">
-                <span className="font-heading font-bold text-sm text-gray-400 w-8">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div className="flex-1 grid grid-cols-1 gap-3">
-                  <BrutalInput
-                    placeholder="Nama keahlian (misal: React.js, Figma, dsb)"
-                    value={skill.name}
-                    onChange={(e) =>
-                      updateSkill(skill.id, { name: e.target.value })
-                    }
-                  />
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div className="flex items-center gap-4 w-full">
+                  <span className="font-heading font-bold text-sm text-gray-400 w-8 shrink-0">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="flex-1">
+                    <BrutalInput
+                      placeholder="Nama keahlian (misal: React.js, Figma, dsb)"
+                      value={skill.name}
+                      onChange={(e) =>
+                        updateSkill(skill.id, { name: e.target.value })
+                      }
+                    />
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-end gap-2 w-full sm:w-auto">
                   <button
                     onClick={() => reorderSkill(index, "up")}
                     disabled={index === 0}
@@ -282,24 +284,26 @@ export default function EducationPage() {
       </div>
 
       {/* Navigation */}
-      <div className="flex justify-between">
-        <Link href="/builder/organization">
+      <div className="flex flex-col-reverse sm:flex-row justify-between gap-4 mt-8">
+        <Link href="/builder/organization" className="w-full sm:w-auto">
           <BrutalButton
             variant="ghost"
             size="lg"
+            className="w-full justify-center"
             icon={<ArrowLeft size={20} strokeWidth={3} />}
           >
             Kembali
           </BrutalButton>
         </Link>
-        <Link href="/builder/preview">
+        <Link href="/builder/preview" className="w-full sm:w-auto">
           <BrutalButton
             variant="primary"
             size="lg"
+            className="w-full justify-center"
             icon={<ArrowRight size={20} strokeWidth={3} />}
             iconPosition="right"
           >
-            Lanjut: Preview
+            Lanjut
           </BrutalButton>
         </Link>
       </div>

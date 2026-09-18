@@ -105,15 +105,16 @@ export default function PersonalInfoPage() {
       </BrutalCard>
 
       {/* Navigation */}
-      <div className="flex justify-end">
-        <Link href="/builder/experience">
+      <div className="flex justify-end mt-8 w-full">
+        <Link href="/builder/experience" className="w-full sm:w-auto">
           <BrutalButton
             variant="primary"
             size="lg"
+            className="w-full justify-center"
             icon={<ArrowRight size={20} strokeWidth={3} />}
             iconPosition="right"
           >
-            Lanjut: Pengalaman
+            Lanjut
           </BrutalButton>
         </Link>
       </div>
