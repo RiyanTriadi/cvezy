@@ -43,7 +43,7 @@ export default function PersonalInfoPage() {
             <BrutalInput
               label="Nama Lengkap"
               name="fullName"
-              placeholder="Contoh: Riyan Triadi"
+              placeholder="Contoh: Budiyono Siregar"
               value={personalInfo.fullName}
               onChange={handleChange}
             />
@@ -51,7 +51,7 @@ export default function PersonalInfoPage() {
               label="Email"
               name="email"
               type="email"
-              placeholder="Contoh: ahmad@email.com"
+              placeholder="Contoh: budiyono@email.com"
               value={personalInfo.email}
               onChange={handleChange}
             />
@@ -79,14 +79,14 @@ export default function PersonalInfoPage() {
             <BrutalInput
               label="LinkedIn (opsional)"
               name="linkedin"
-              placeholder="Contoh: linkedin.com/in/ahmad"
+              placeholder="Contoh: linkedin.com/in/budiyono"
               value={personalInfo.linkedin}
               onChange={handleChange}
             />
             <BrutalInput
               label="Website (opsional)"
               name="website"
-              placeholder="Contoh: ahmad.dev"
+              placeholder="Contoh: budiyono.dev"
               value={personalInfo.website}
               onChange={handleChange}
             />
