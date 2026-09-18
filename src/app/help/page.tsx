@@ -294,12 +294,12 @@ export default function HelpPage() {
                   GitHub
                 </BrutalButton>
               </a>
-              <a href="https://linkedin.com/in/riyantriadi" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/riyan-triadi-a713b6367" target="_blank" rel="noopener noreferrer">
                 <BrutalButton variant="primary" size="md">
                   LinkedIn
                 </BrutalButton>
               </a>
-              <a href="https://instagram.com/riyantriadi" target="_blank" rel="noopener noreferrer">
+              <a href="https://instagram.com/ryn3d" target="_blank" rel="noopener noreferrer">
                 <BrutalButton variant="secondary" size="md" className="bg-brand-pink hover:bg-brand-pink/90">
                   Instagram
                 </BrutalButton>

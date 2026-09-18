@@ -535,12 +535,12 @@ function ContactSection() {
                 GitHub
               </BrutalButton>
             </a>
-            <a href="https://linkedin.com/in/riyantriadi" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/riyan-triadi-a713b6367" target="_blank" rel="noopener noreferrer">
               <BrutalButton variant="primary" size="lg" className="w-full sm:w-auto text-brutal-black hover:text-brutal-black">
                 LinkedIn
               </BrutalButton>
             </a>
-            <a href="https://instagram.com/riyantriadi" target="_blank" rel="noopener noreferrer">
+            <a href="https://instagram.com/ryn3d" target="_blank" rel="noopener noreferrer">
               <BrutalButton variant="danger" size="lg" className="w-full sm:w-auto text-brutal-black hover:text-brutal-black">
                 Instagram
               </BrutalButton>
