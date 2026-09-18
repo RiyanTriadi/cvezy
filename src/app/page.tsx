@@ -6,19 +6,14 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   FileText,
-  Palette,
   Download,
   Save,
   Zap,
-  Layout,
-  Sparkles,
   CheckCircle,
-  Star,
   Clock,
   Shield,
   Coffee,
   MessageSquare,
-  Mail,
 } from "lucide-react";
 import { BrutalButton } from "@/components/ui/brutal-button";
 import { BrutalCard, BrutalCardTitle, BrutalCardContent } from "@/components/ui/brutal-card";
@@ -57,11 +52,6 @@ function HeroSection() {
         className="absolute top-20 right-10 w-24 h-24 bg-brand-yellow border-4 border-brutal-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hidden lg:block"
         animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute top-40 left-8 w-16 h-16 bg-brand-blue border-4 border-brutal-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hidden lg:block"
-        animate={{ y: [0, 15, 0], rotate: [0, -8, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       />
       <motion.div
         className="absolute bottom-32 right-32 w-20 h-20 bg-brand-pink border-4 border-brutal-black shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] hidden lg:block"
@@ -167,7 +157,7 @@ function HeroSection() {
               {/* CV Header */}
               <div className="flex items-start gap-4 mb-6 pb-6 border-b-4 border-brutal-black">
                 <div className="w-20 h-20 bg-brand-blue border-4 border-brutal-black flex items-center justify-center">
-                  <span className="font-heading font-bold text-2xl text-brutal-white">AS</span>
+                  <span className="font-heading font-bold text-2xl text-brutal-white">RT</span>
                 </div>
                 <div>
                   <h3 className="font-heading font-bold text-xl uppercase">Riyan Triadi</h3>
