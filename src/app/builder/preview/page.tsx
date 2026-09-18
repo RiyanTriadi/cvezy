@@ -119,7 +119,7 @@ export default function PreviewPage() {
     <div className="flex flex-col gap-8">
       {/* Top: CV Preview Area */}
       <div className="w-full">
-        <div className="mb-6 flex-col md:flex-row items-center justify-between">
+        <div className="mb-6 flex flex-col md:flex-row items-start md:items-end justify-between">
           <div>
             <BrutalBadge variant="cyan" className="mb-3">
               <Eye size={14} strokeWidth={3} className="mr-1" />
